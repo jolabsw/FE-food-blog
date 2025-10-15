@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 function TodoList({todos, deleteTodo}) {
   return <section>
     <h2>TO DO LIST:</h2>
