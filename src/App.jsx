@@ -1,9 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { useCallback } from 'react'
 import TodoInput from './components/TodoInput'
 
 import './App.css'
 import TodoList from './components/TodoList'
 import useLocalStorage from './hooks/useLocalStorage'
+import Home from './pages/Home'
+import TodoDetails from './pages/TodoDetails'
 
 function App() {
   const [todoList, setTodoList] = useLocalStorage('todos', []);
@@ -18,10 +21,16 @@ function App() {
 
   return (
     <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/todo/:todoId' element={<TodoDetails />} />
+        </Routes>
+      </BrowserRouter>
       <h1>Simple TO DO List</h1>
 
       <TodoInput addTodo={addTodo} />
-      <TodoList todos={todoList} deleteTodo={deleteTodo} />      
+      <TodoList todos={todoList} deleteTodo={deleteTodo} />
     </>
   )
 }
